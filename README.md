@@ -1,47 +1,78 @@
-Automação de Inventário com Python
+# Automação de Inventário e Cadastro com Python 🚀
 
-Este projeto é um script de automação desenvolvido para otimizar o processo de cadastro de produtos em sistemas web. Ele utiliza Python para ler bases de dados e simular a interação humana na interface, eliminando tarefas repetitivas e reduzindo erros de digitação.
- 
- Sobre o Projeto
+Este projeto desenvolve uma solução de **RPA (Robotic Process Automation)** para otimizar o fluxo de entrada de dados em sistemas de inventário. A automação aborda o desafio de processar grandes volumes de informações, eliminando o erro humano e reduzindo drasticamente o tempo de execução de tarefas repetitivas.
 
-O script foi criado para resolver o problema comum de entrada manual de dados. Ele lê um arquivo .csv contendo informações de produtos e preenche automaticamente um formulário de cadastro online.
-Principais Funcionalidades:
+Utilizando o ecossistema Python para manipulação de dados e controle de periféricos, o sistema lê bases de dados estruturadas em CSV e simula a interação de um operador humano em interfaces web, garantindo que o cadastro de produtos seja realizado de forma precisa e escalável.
 
-    Processamento de Dados: Utiliza a biblioteca Pandas para manipular e percorrer grandes volumes de dados de forma eficiente.
+## Arquitetura da Automação
 
-    Automação de UI: Utiliza PyAutoGUI para controlar mouse e teclado, realizando o preenchimento de campos, navegação via tab e cliques em botões.
+O sistema opera através de uma integração entre o sistema de arquivos local e a interface do navegador:
 
-    Controle de Fluxo: Implementação de pausas inteligentes (time.sleep) para garantir que o sistema web carregue corretamente antes de cada ação.
+```text
+┌───────────────────────────┐          ┌───────────────────────────┐
+│     FONTE DE DADOS        │          │    MOTOR DE EXECUÇÃO      │
+│  ┌─────────────────────┐  │          │  ┌─────────────────────┐  │
+│  │   Arquivo .CSV      │  │          │  │   Python Script     │  │
+│  │ (Tabela de Produtos)│──┼──────────┼─▶│ • Lógica de Loop    │  │
+│  └─────────────────────┘  │          │  │ • Tratamento Dados  │  │
+└───────────────────────────┘          │  │ • Delay Inteligente │  │
+                                       └─────────────────────┘
+                                                  │
+                                                  │ Simulação de Input
+                                                  ▼
+┌───────────────────────────┐          ┌───────────────────────────┐
+│    INTERFACE DESTINO      │          │   BIBLIOTECAS CORE        │
+│  ┌─────────────────────┐  │          │  ┌─────────────────────┐  │
+│  │    Sistema Web      │  │          │  │      Pandas         │  │
+│  │ (Formulário Cadastro)│◀─┼──────────┼──│ (Data Manipulation) │  │
+│  │                     │  │          │  ├─────────────────────┤  │
+│  │                     │  │          │  │     PyAutoGUI       │  │
+│  └─────────────────────┘  │          │  │   (UI Automation)   │  │
+└───────────────────────────┘          └─────────────────────┘
+```
+## Fluxo de Execução
 
- Tecnologias Utilizadas
+    Setup Inicial: O script configura um PAUSE global de 0.5s para garantir a sincronia entre comandos.
 
-    Python 3
+    Acesso ao Sistema: Automatiza a abertura do navegador Chrome e navegação até a URL de login.
 
-    Pandas: Para análise e manipulação de arquivos CSV.
+    Autenticação: Realiza o login utilizando credenciais pré-definidas (Email/Senha).
 
-    PyAutoGUI: Para automação de comandos de mouse e teclado.
+    Extração de Dados: Utiliza a biblioteca Pandas para carregar o arquivo produtos.csv em um DataFrame.
 
-    Time: Para gerenciamento de intervalos entre execuções.
+    Loop de Cadastro:
 
- Como Executar
+        Itera sobre cada linha da tabela.
 
-    Clone o repositório:
-    Bash
+        Mapeia as colunas (Código, Marca, Tipo, Categoria, Preço, Custo).
 
-git clone https://github.com/Brunoreit/NOME_DO_REPO.git
+        Executa comandos de teclado (tab, write, press) para preencher o formulário.
 
-Instale as dependências:
+    Finalização: Envia o formulário e reinicia o ciclo para o próximo item até o fim do arquivo.
+
+## Como Rodar o Projeto
+1. Pré-requisitos
+
+Certifique-se de ter o Python instalado e as bibliotecas necessárias:
 Bash
 
 pip install pyautogui pandas
 
-Prepare o ambiente:
+2. Configuração de Tela (Importante)
 
-    Certifique-se de que o arquivo produtos.csv está na mesma pasta do script.
+Como a automação utiliza coordenadas de pixels, é necessário calibrar o script para a sua resolução de tela:
+Bash
 
-    Ajuste as coordenadas de clique no arquivo projectPowerUp.py (você pode usar o auxiliar.py para descobrir os pontos X e Y da sua tela).
+# Execute o auxiliar para descobrir as coordenadas de clique
+python auxiliar.py
 
-Rode o script:
+Posicione o mouse sobre os campos do formulário e anote os valores X e Y retornados no terminal.
+3. Execução
+
+Com o navegador fechado ou em segundo plano:
 Bash
 
 python projectPowerUp.py
+
+
+

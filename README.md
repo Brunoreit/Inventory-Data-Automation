@@ -1,4 +1,4 @@
-# Automação de Inventário e Cadastro com Python 🚀
+# Automação de Inventário e Cadastro com Python 
 
 Este projeto desenvolve uma solução de **RPA (Robotic Process Automation)** para otimizar o fluxo de entrada de dados em sistemas de inventário. A automação aborda o desafio de processar grandes volumes de informações, eliminando o erro humano e reduzindo drasticamente o tempo de execução de tarefas repetitivas.
 
@@ -32,47 +32,50 @@ O sistema opera através de uma integração entre o sistema de arquivos local e
 ```
 ## Fluxo de Execução
 
-    Setup Inicial: O script configura um PAUSE global de 0.5s para garantir a sincronia entre comandos.
+1. Setup Inicial: O script configura um PAUSE global de 0.5s para garantir a sincronia entre comandos.
 
-    Acesso ao Sistema: Automatiza a abertura do navegador Chrome e navegação até a URL de login.
+2. Acesso ao Sistema: Automatiza a abertura do navegador Chrome e navegação até a URL de login.
 
-    Autenticação: Realiza o login utilizando credenciais pré-definidas (Email/Senha).
+3. Autenticação: Realiza o login utilizando credenciais pré-definidas (Email/Senha).
 
-    Extração de Dados: Utiliza a biblioteca Pandas para carregar o arquivo produtos.csv em um DataFrame.
+4. Extração de Dados: Utiliza a biblioteca Pandas para carregar o arquivo produtos.csv em um DataFrame.
 
-    Loop de Cadastro:
+5. Loop de Cadastro:
 
-        Itera sobre cada linha da tabela.
+  - Itera sobre cada linha da tabela.
+  - Mapeia as colunas (Código, Marca, Tipo, Categoria, Preço, Custo).
+  - Executa comandos de teclado (tab, write, press) para preencher o formulário.
 
-        Mapeia as colunas (Código, Marca, Tipo, Categoria, Preço, Custo).
-
-        Executa comandos de teclado (tab, write, press) para preencher o formulário.
-
-    Finalização: Envia o formulário e reinicia o ciclo para o próximo item até o fim do arquivo.
+6. Finalização: Envia o formulário e reinicia o ciclo para o próximo item até o fim do arquivo.
 
 ## Como Rodar o Projeto
 1. Pré-requisitos
 
 Certifique-se de ter o Python instalado e as bibliotecas necessárias:
-Bash
-
+```Bash
 pip install pyautogui pandas
+```
 
 2. Configuração de Tela (Importante)
 
 Como a automação utiliza coordenadas de pixels, é necessário calibrar o script para a sua resolução de tela:
-Bash
+```Bash
 
 # Execute o auxiliar para descobrir as coordenadas de clique
 python auxiliar.py
-
+```
 Posicione o mouse sobre os campos do formulário e anote os valores X e Y retornados no terminal.
+
 3. Execução
 
 Com o navegador fechado ou em segundo plano:
-Bash
+```Bash
 
 python projectPowerUp.py
+```
 
+| Nome |
+|------|
+| **Bruno Reitano** |
 
 

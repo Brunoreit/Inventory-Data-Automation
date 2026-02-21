@@ -74,8 +74,7 @@ Com o navegador fechado ou em segundo plano:
 python projectPowerUp.py
 ```
 
-| Nome |
-|------|
-| **Bruno Reitano** |
+## Autor
+- Bruno Reitano
 
 
